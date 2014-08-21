@@ -1,0 +1,28 @@
+{
+    "name": "contao-components/colorbox",
+    "type": "component",
+    "description": "Colorbox integration for Contao Open Source CMS",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Leo Feyer",
+            "homepage": "https://github.com/leofeyer"
+        }
+    ],
+    "require": {
+        "robloach/component-installer": "~0.0"
+    },
+    "extra": {
+        "component": {
+            "scripts": [
+                "js/colorbox.min.js"
+            ],
+            "styles": [
+                "css/colorbox.min.css"
+            ],
+            "files": [
+                "images/*"
+            ]
+        }
+    }
+}
