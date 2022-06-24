@@ -1,12 +1,12 @@
 {
     "name": "contao-components/colorbox",
-    "type": "contao-component",
     "description": "Colorbox integration for Contao Open Source CMS",
     "license": "MIT",
+    "type": "contao-component",
     "authors": [
         {
-            "name": "Leo Feyer",
-            "homepage": "https://github.com/leofeyer"
+            "name": "Jack Moore",
+            "homepage": "https://github.com/jackmoore"
         }
     ],
     "require": {
