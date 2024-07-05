@@ -1,45 +1,23 @@
-'use strict';
+const { src, dest, parallel } = require('gulp');
+const csso = require('gulp-csso');
+const rename = require('gulp-rename');
+const uglify = require('gulp-uglify');
 
-var gulp = require('gulp'),
-    csso = require('gulp-csso'),
-    ignore = require('gulp-ignore'),
-    rename = require('gulp-rename'),
-    uglify = require('gulp-uglify'),
-    pump = require('pump');
+function css() {
+    return src(['css/*.css', '!css/*.min.css'])
+        .pipe(csso({
+            comments: false,
+            restructure: false
+        }))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest('css'));
+}
 
-gulp.task('minify-css', function (cb) {
-    pump([
-            gulp.src('css/*.css'),
-            ignore.exclude('*.min.css'),
-            csso({
-                comments: false,
-                restructure: false
-            }),
-            rename({
-                suffix: '.min'
-            }),
-            gulp.dest('css')
-        ],
-        cb
-    );
-});
+function js() {
+    return src(['js/*.js', '!js/*.min.js'])
+        .pipe(uglify())
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(dest('js'));
+}
 
-gulp.task('minify-js', function (cb) {
-    pump([
-            gulp.src('js/*.js'),
-            ignore.exclude('*.min.js'),
-            uglify({
-                output: {
-                    comments: '/^!/'
-                }
-            }),
-            rename({
-                suffix: '.min'
-            }),
-            gulp.dest('js')
-        ],
-        cb
-    );
-});
-
-gulp.task('default', gulp.parallel('minify-css', 'minify-js'));
+exports.default = parallel(css, js);
