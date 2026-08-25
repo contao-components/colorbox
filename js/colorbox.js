@@ -87,7 +87,7 @@
 			return $(this).attr('href');
 		},
 		title: function() {
-			return this.title;
+			return this.title?.replace(/</g, '&lt;');
 		},
 		createImg: function() {
 			var img = new Image();
